@@ -95,6 +95,7 @@ header{
   color: var(--cedar-deep); text-decoration:none; white-space:nowrap;
 }
 .brand-mark{ width:30px; height:30px; flex-shrink:0; }
+.brand-text{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 nav.links{ display:flex; gap:26px; font-size:0.92rem; font-weight:600; }
 nav.links a{ text-decoration:none; opacity:0.8; }
 nav.links a.active, nav.links a:hover{ opacity:1; color: var(--barn); }
@@ -119,6 +120,19 @@ nav.links a.active, nav.links a:hover{ opacity:1; color: var(--barn); }
   }
   .menu-toggle{ display:block; }
   .phone-link{ display:none; }
+
+  /* At mobile widths, "Miller Window Service" + the quote button + the
+     hamburger icon together are wider than a phone screen. justify-content:
+     center was letting that overflow spill off BOTH edges equally, which is
+     what actually hid the hamburger (it was rendered past the right edge of
+     the viewport, not just visually zoomed). Pin brand left / actions right
+     instead, and let the brand text shrink and truncate so the quote button
+     and hamburger always stay fully on-screen. */
+  .nav{ justify-content: space-between; }
+  .brand{ flex-shrink:1; min-width:0; }
+  .brand-text{ min-width:0; }
+  .nav-cta{ gap:12px; flex-shrink:0; }
+  .nav-cta .btn{ font-size:0.82rem; padding:10px 14px; white-space:nowrap; }
 }
 
 /* JS-driven twin of the rules above. Some real-world iOS Safari sessions fail to
@@ -142,6 +156,11 @@ body.nav-compact nav.links.open{
 }
 body.nav-compact .menu-toggle{ display:block; }
 body.nav-compact .phone-link{ display:none; }
+body.nav-compact .nav{ justify-content: space-between; }
+body.nav-compact .brand{ flex-shrink:1; min-width:0; }
+body.nav-compact .brand-text{ min-width:0; }
+body.nav-compact .nav-cta{ gap:12px; flex-shrink:0; }
+body.nav-compact .nav-cta .btn{ font-size:0.82rem; padding:10px 14px; white-space:nowrap; }
 
 /* ===== HOME HERO ===== */
 .hero{
