@@ -103,6 +103,7 @@ header{
    there's still guaranteed room for the quote button + hamburger. */
 @media (max-width: 420px){
   .brand-mark{ display:none; }
+  .brand-text{ padding-left:6px; }
 }
 nav.links{ display:flex; gap:26px; font-size:0.92rem; font-weight:600; }
 nav.links a{ text-decoration:none; opacity:0.8; }
