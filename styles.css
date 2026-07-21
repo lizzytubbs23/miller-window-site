@@ -91,11 +91,19 @@ header{
 }
 .brand{
   display:flex; align-items:center; gap:10px; flex-shrink:0;
-  font-family: var(--serif); font-weight:700; font-size:1.25rem;
+  font-family: var(--serif); font-weight:700;
+  font-size: clamp(0.8rem, 4vw, 1.25rem);
   color: var(--cedar-deep); text-decoration:none; white-space:nowrap;
 }
 .brand-mark{ width:30px; height:30px; flex-shrink:0; }
-.brand-text{ overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.brand-text{ white-space:nowrap; }
+
+/* Below a certain width, even the shrunk text plus the icon is tight —
+   drop the little window-mark icon first so the name stays readable and
+   there's still guaranteed room for the quote button + hamburger. */
+@media (max-width: 420px){
+  .brand-mark{ display:none; }
+}
 nav.links{ display:flex; gap:26px; font-size:0.92rem; font-weight:600; }
 nav.links a{ text-decoration:none; opacity:0.8; }
 nav.links a.active, nav.links a:hover{ opacity:1; color: var(--barn); }
@@ -126,8 +134,8 @@ nav.links a.active, nav.links a:hover{ opacity:1; color: var(--barn); }
      center was letting that overflow spill off BOTH edges equally, which is
      what actually hid the hamburger (it was rendered past the right edge of
      the viewport, not just visually zoomed). Pin brand left / actions right
-     instead, and let the brand text shrink and truncate so the quote button
-     and hamburger always stay fully on-screen. */
+     instead — the brand text itself already shrinks fluidly via its clamp()
+     font-size, so the quote button and hamburger always stay fully on-screen. */
   .nav{ justify-content: space-between; }
   .brand{ flex-shrink:1; min-width:0; }
   .brand-text{ min-width:0; }
