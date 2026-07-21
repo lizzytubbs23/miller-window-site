@@ -20,6 +20,34 @@
   window.addEventListener('orientationchange', syncNavMode);
 })();
 
+(function () {
+  // Some real iOS Safari sessions render the page at a zoomed-in scale on
+  // first paint (part of the layout, including the hamburger icon on the
+  // right edge, ends up cropped off-screen) and only recompute to the
+  // correct 1.0 scale after the user manually pinch-zooms. Toggling the
+  // viewport meta tag's content after load forces WebKit to redo that scale
+  // calculation using the final, settled layout instead of whatever it
+  // guessed on first paint.
+  var viewport = document.querySelector('meta[name="viewport"]');
+  if (!viewport) return;
+  var original = viewport.getAttribute('content');
+
+  function nudgeViewport() {
+    viewport.setAttribute('content', original + ', shrink-to-fit=no');
+    window.requestAnimationFrame(function () {
+      viewport.setAttribute('content', original);
+    });
+  }
+
+  window.addEventListener('load', function () {
+    nudgeViewport();
+    window.setTimeout(nudgeViewport, 300);
+    window.setTimeout(nudgeViewport, 800);
+  });
+  window.addEventListener('pageshow', nudgeViewport);
+  window.addEventListener('orientationchange', nudgeViewport);
+})();
+
 document.addEventListener('DOMContentLoaded', function () {
   var toggle = document.querySelector('.menu-toggle');
   var navLinks = document.querySelector('nav.links');
