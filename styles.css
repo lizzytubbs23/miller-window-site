@@ -121,6 +121,28 @@ nav.links a.active, nav.links a:hover{ opacity:1; color: var(--barn); }
   .phone-link{ display:none; }
 }
 
+/* JS-driven twin of the rules above. Some real-world iOS Safari sessions fail to
+   apply the max-width media query on first paint (it only kicks in after an
+   interaction forces a relayout). script.js measures window.innerWidth directly
+   on load and toggles this class, so the mobile nav shows up correctly even
+   when that browser quirk happens. */
+body.nav-compact nav.links{ display:none; }
+body.nav-compact nav.links.open{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:16px;
+  position:absolute;
+  top:100%; left:0; right:0;
+  background: var(--paper);
+  padding:20px 28px;
+  border-bottom:1px solid var(--line);
+  box-shadow: 0 12px 24px -16px rgba(0,0,0,0.2);
+  z-index: 40;
+}
+body.nav-compact .menu-toggle{ display:block; }
+body.nav-compact .phone-link{ display:none; }
+
 /* ===== HOME HERO ===== */
 .hero{
   padding: 64px 0 40px;

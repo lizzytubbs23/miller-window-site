@@ -1,3 +1,25 @@
+(function () {
+  var MOBILE_BREAKPOINT = 960;
+
+  function syncNavMode() {
+    var isCompact = window.innerWidth <= MOBILE_BREAKPOINT;
+    document.body.classList.toggle('nav-compact', isCompact);
+  }
+
+  // Run immediately (script.js is deferred, so the DOM/body already exist),
+  // then re-check on every event that could plausibly change or reveal the
+  // real viewport width. Some real iOS Safari sessions load the page with
+  // the mobile nav media query not yet applied, and only recalc it after an
+  // interaction (pinch, scroll, orientation change). Measuring innerWidth
+  // ourselves in JS sidesteps that and forces the correct state right away.
+  syncNavMode();
+  document.addEventListener('DOMContentLoaded', syncNavMode);
+  window.addEventListener('load', syncNavMode);
+  window.addEventListener('pageshow', syncNavMode);
+  window.addEventListener('resize', syncNavMode);
+  window.addEventListener('orientationchange', syncNavMode);
+})();
+
 document.addEventListener('DOMContentLoaded', function () {
   var toggle = document.querySelector('.menu-toggle');
   var navLinks = document.querySelector('nav.links');
