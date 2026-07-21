@@ -409,6 +409,13 @@ form.contact-form{ background: var(--paper-dim); border:1px solid var(--line); b
 @media (max-width:860px){ .contact-grid{ grid-template-columns:1fr; } }
 
 /* ===== INSTANT QUOTE CALCULATOR ===== */
+.calc-contact-fields{
+  display:grid; grid-template-columns: 1fr 1fr; gap:0 24px;
+  background: var(--paper-dim); border:1px solid var(--line); border-radius: var(--radius);
+  padding:28px 28px 10px; margin-bottom:28px;
+}
+.calc-field-wide{ grid-column: 1 / -1; }
+@media (max-width:860px){ .calc-contact-fields{ grid-template-columns:1fr; padding:24px 20px 6px; } }
 .calc-wrap{ display:grid; grid-template-columns: 1.6fr 1fr; gap:32px; align-items:start; }
 .calc-grid{ display:flex; flex-direction:column; gap:14px; }
 .calc-item{
