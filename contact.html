@@ -62,7 +62,11 @@
         <p style="color:#4A5850; font-size:0.92rem; margin:0;">Waterloo, Cedar Falls, Waverly, Iowa Falls, and surrounding Cedar Valley communities.</p>
       </div>
     </div>
-    <form class="contact-form" action="mailto:info@millerwindowservice.com" method="post" enctype="text/plain">
+    <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
+      <input type="hidden" name="form-name" value="contact">
+      <p style="display:none;">
+        <label>Don't fill this out if you're human: <input name="bot-field"></label>
+      </p>
       <div class="form-field">
         <label for="name">Name</label>
         <input type="text" id="name" name="name" required>

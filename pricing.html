@@ -104,7 +104,11 @@
       <h2>Choose your window type and quantity.</h2>
       <p>Fill in your info and add up your windows below for a rough estimate in seconds — send it to us as a starting point for your free, no-obligation quote.</p>
     </div>
-    <form class="calc-form" action="mailto:info@millerwindowservice.com" method="post" enctype="text/plain">
+    <form class="calc-form" name="quote-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
+      <input type="hidden" name="form-name" value="quote-request">
+      <p style="display:none;">
+        <label>Don't fill this out if you're human: <input name="bot-field"></label>
+      </p>
       <div class="calc-contact-fields">
         <div class="form-field">
           <label for="calc-name">Name</label>
