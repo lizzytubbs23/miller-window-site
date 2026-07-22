@@ -127,7 +127,7 @@ nav.links a.active, nav.links a:hover{ opacity:1; color: var(--barn); }
     box-shadow: 0 12px 24px -16px rgba(0,0,0,0.2);
     z-index: 40;
   }
-  .menu-toggle{ display:block; }
+  .menu-toggle{ display:block; margin-right:6px; }
   .phone-link{ display:none; }
 
   /* At mobile widths, "Miller Window Service" + the quote button + the
@@ -163,7 +163,7 @@ body.nav-compact nav.links.open{
   box-shadow: 0 12px 24px -16px rgba(0,0,0,0.2);
   z-index: 40;
 }
-body.nav-compact .menu-toggle{ display:block; }
+body.nav-compact .menu-toggle{ display:block; margin-right:6px; }
 body.nav-compact .phone-link{ display:none; }
 body.nav-compact .nav{ justify-content: space-between; }
 body.nav-compact .brand{ flex-shrink:1; min-width:0; }
